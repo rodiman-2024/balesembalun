@@ -11,8 +11,8 @@ const defaultFactoryData = {
   profile: {
     brandName: "Bale Keluarga",
     brandSubtitle: "Homestay Sembalun",
-    phone: "+62 858-0111-2024",
-    whatsapp: "6285801112024",
+    phone: "085801112024",
+    whatsapp: "085801112024",
     address: "Jl. Pariwisata Sembalun Lawang, Lombok Timur, NTB 83656",
     pricePerNight: 350000,
     priceSubtitle: "Sewa 1 Homestay Penuh / Malam",
@@ -176,8 +176,9 @@ function populateAllSections() {
     setVal('profBrandSubInput', appData.profile.brandSubtitle);
     setVal('profPriceInput', appData.profile.pricePerNight || 350000);
     setVal('profPriceSubInput', appData.profile.priceSubtitle || 'Sewa 1 Homestay Penuh / Malam');
-    setVal('profWhatsappInput', appData.profile.whatsapp);
-    setVal('profPhoneInput', appData.profile.phone);
+    const contactNum = appData.profile.phone || appData.profile.whatsapp || '085801112024';
+    setVal('profPhoneInput', contactNum);
+    setVal('profWhatsappInput', contactNum);
     setVal('profAddressInput', appData.profile.address);
     setVal('profCheckinInput', appData.profile.checkinTime);
     setVal('profCheckoutInput', appData.profile.checkoutTime);
@@ -414,8 +415,9 @@ function bindMasterSaveButton() {
       appData.profile.brandSubtitle = getVal('profBrandSubInput', appData.profile.brandSubtitle);
       appData.profile.pricePerNight = Number(getVal('profPriceInput', appData.profile.pricePerNight || 350000));
       appData.profile.priceSubtitle = getVal('profPriceSubInput', appData.profile.priceSubtitle || 'Sewa 1 Homestay Penuh / Malam');
-      appData.profile.whatsapp = getVal('profWhatsappInput', appData.profile.whatsapp || '').replace(/[^0-9]/g, '');
-      appData.profile.phone = getVal('profPhoneInput', appData.profile.phone);
+      const contactNum = (getVal('profPhoneInput') || getVal('profWhatsappInput') || '085801112024').trim();
+      appData.profile.phone = contactNum;
+      appData.profile.whatsapp = contactNum;
       appData.profile.address = getVal('profAddressInput', appData.profile.address);
       appData.profile.checkinTime = getVal('profCheckinInput', appData.profile.checkinTime);
       appData.profile.checkoutTime = getVal('profCheckoutInput', appData.profile.checkoutTime);

@@ -121,7 +121,10 @@ async function loadAndHydrateData() {
 
     // Contact & Info in Footer
     const footerPhone = document.getElementById('footerPhoneText');
-    if (footerPhone && p.phone) footerPhone.textContent = `WhatsApp: ${p.phone}`;
+    const footerPhoneLink = document.getElementById('footerPhoneLink');
+    const displayPhone = p.phone || p.whatsapp || '085801112024';
+    if (footerPhone) footerPhone.textContent = `WhatsApp: ${displayPhone}`;
+    if (footerPhoneLink) footerPhoneLink.href = `https://wa.me/${formatWhatsAppNumber(displayPhone)}`;
 
     const footerAddress = document.getElementById('footerAddressText');
     if (footerAddress && p.address) footerAddress.textContent = p.address;
